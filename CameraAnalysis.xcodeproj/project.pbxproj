@@ -45,6 +45,13 @@
 		1FDC87D12063B6E300F8D5D9 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FDC87CF2063B6E300F8D5D9 /* VideoViewController.xib */; };
 		1FDC87D42063C3B800F8D5D9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDC87D32063C3B800F8D5D9 /* AVFoundation.framework */; };
 		1FDC87D72063C4C400F8D5D9 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDC87D62063C4C400F8D5D9 /* opencv2.framework */; };
+		1FE3C3742084DBC100C09FF1 /* SliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3C36F2084DBC000C09FF1 /* SliderTableViewCell.m */; };
+		1FE3C3752084DBC100C09FF1 /* SliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE3C3702084DBC000C09FF1 /* SliderTableViewCell.xib */; };
+		1FE3C3762084DBC100C09FF1 /* SettingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3C3712084DBC000C09FF1 /* SettingTableView.m */; };
+		1FE3C37A2084E4F800C09FF1 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3C3782084E4F800C09FF1 /* SettingViewController.m */; };
+		1FE3C37B2084E4F800C09FF1 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE3C3792084E4F800C09FF1 /* SettingViewController.xib */; };
+		1FE3C37F2084E51F00C09FF1 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3C37D2084E51F00C09FF1 /* AboutViewController.m */; };
+		1FE3C3802084E51F00C09FF1 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE3C37E2084E51F00C09FF1 /* AboutViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +115,18 @@
 		1FDC87D32063C3B800F8D5D9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1FDC87D52063C46B00F8D5D9 /* CameraAnalysis-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CameraAnalysis-PrefixHeader.pch"; sourceTree = "<group>"; };
 		1FDC87D62063C4C400F8D5D9 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		1FE3C36F2084DBC000C09FF1 /* SliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderTableViewCell.m; sourceTree = "<group>"; };
+		1FE3C3702084DBC000C09FF1 /* SliderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderTableViewCell.xib; sourceTree = "<group>"; };
+		1FE3C3712084DBC000C09FF1 /* SettingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableView.m; sourceTree = "<group>"; };
+		1FE3C3722084DBC000C09FF1 /* SliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderTableViewCell.h; sourceTree = "<group>"; };
+		1FE3C3732084DBC000C09FF1 /* SettingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableView.h; sourceTree = "<group>"; };
+		1FE3C3772084E4F800C09FF1 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		1FE3C3782084E4F800C09FF1 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		1FE3C3792084E4F800C09FF1 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		1FE3C37C2084E51F00C09FF1 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		1FE3C37D2084E51F00C09FF1 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		1FE3C37E2084E51F00C09FF1 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		1FE3C3A62088CACA00C09FF1 /* CameraParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CameraParameter.h; path = CameraAnalysis/CameraParameter.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,9 +222,16 @@
 		1FA2409B206E8141004EA814 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1FE3C3A62088CACA00C09FF1 /* CameraParameter.h */,
 				1FDC87BA2063AC4300F8D5D9 /* ViewController.h */,
 				1FDC87BB2063AC4300F8D5D9 /* ViewController.mm */,
 				1FDC87BD2063AC4300F8D5D9 /* Main.storyboard */,
+				1FE3C37C2084E51F00C09FF1 /* AboutViewController.h */,
+				1FE3C37D2084E51F00C09FF1 /* AboutViewController.m */,
+				1FE3C37E2084E51F00C09FF1 /* AboutViewController.xib */,
+				1FE3C3772084E4F800C09FF1 /* SettingViewController.h */,
+				1FE3C3782084E4F800C09FF1 /* SettingViewController.m */,
+				1FE3C3792084E4F800C09FF1 /* SettingViewController.xib */,
 				1FDC87CD2063B6E300F8D5D9 /* VideoViewController.h */,
 				1FDC87CE2063B6E300F8D5D9 /* VideoViewController.mm */,
 				1FDC87CF2063B6E300F8D5D9 /* VideoViewController.xib */,
@@ -245,6 +271,7 @@
 		1FDC87B62063AC4300F8D5D9 /* CameraAnalysis */ = {
 			isa = PBXGroup;
 			children = (
+				1FE3C36E2084DBC000C09FF1 /* SettingTableView */,
 				1FA2407B206E774C004EA814 /* ProcessWrite */,
 				1FA2400820669900004EA814 /* CVHandlers */,
 				1FDC87B72063AC4300F8D5D9 /* AppDelegate.h */,
@@ -276,6 +303,19 @@
 				1FDC87D32063C3B800F8D5D9 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1FE3C36E2084DBC000C09FF1 /* SettingTableView */ = {
+			isa = PBXGroup;
+			children = (
+				1FE3C36F2084DBC000C09FF1 /* SliderTableViewCell.m */,
+				1FE3C3722084DBC000C09FF1 /* SliderTableViewCell.h */,
+				1FE3C3702084DBC000C09FF1 /* SliderTableViewCell.xib */,
+				1FE3C3712084DBC000C09FF1 /* SettingTableView.m */,
+				1FE3C3732084DBC000C09FF1 /* SettingTableView.h */,
+			);
+			name = SettingTableView;
+			path = ViewControllers/SettingTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,12 +377,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FDC87C42063AC4300F8D5D9 /* LaunchScreen.storyboard in Resources */,
+				1FE3C37B2084E4F800C09FF1 /* SettingViewController.xib in Resources */,
 				1FA240A1206E81CA004EA814 /* CameraViewController.xib in Resources */,
 				1FA24096206E774C004EA814 /* myFilter.vsh in Resources */,
 				1FDC87C12063AC4300F8D5D9 /* Assets.xcassets in Resources */,
 				1FDC87D12063B6E300F8D5D9 /* VideoViewController.xib in Resources */,
+				1FE3C3752084DBC100C09FF1 /* SliderTableViewCell.xib in Resources */,
 				1FA24094206E774C004EA814 /* RosyWriterViewController.xib in Resources */,
 				1FDC87BF2063AC4300F8D5D9 /* Main.storyboard in Resources */,
+				1FE3C3802084E51F00C09FF1 /* AboutViewController.xib in Resources */,
 				1FA24095206E774C004EA814 /* myFilter.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,23 +399,27 @@
 			files = (
 				1F59058E206FD89300084217 /* ThresholdHanlder.cpp in Sources */,
 				1FA240112066A895004EA814 /* CameraCalibrationHandler.cpp in Sources */,
+				1FE3C3762084DBC100C09FF1 /* SettingTableView.m in Sources */,
 				1FA24017206797E0004EA814 /* SettingView.m in Sources */,
 				1FA24098206E774C004EA814 /* ShaderUtilities.c in Sources */,
 				1FA24097206E774C004EA814 /* matrix.c in Sources */,
 				1FA240A4206E862B004EA814 /* GaussianBlurHandler.cpp in Sources */,
 				1FA24091206E774C004EA814 /* RosyWriterCapturePipeline.mm in Sources */,
 				1FDC87BC2063AC4300F8D5D9 /* ViewController.mm in Sources */,
+				1FE3C37A2084E4F800C09FF1 /* SettingViewController.m in Sources */,
 				1FA24099206E774C004EA814 /* MovieRecorder.m in Sources */,
 				1FDC87C72063AC4300F8D5D9 /* main.m in Sources */,
 				1FA24093206E774C004EA814 /* RosyWriterViewController.mm in Sources */,
 				1FA240A0206E81CA004EA814 /* CameraViewController.mm in Sources */,
 				1F590591206FDE0A00084217 /* CannyHandler.cpp in Sources */,
 				1FA2409A206E774C004EA814 /* OpenGLPixelBufferView.m in Sources */,
+				1FE3C3742084DBC100C09FF1 /* SliderTableViewCell.m in Sources */,
 				1FA24092206E774C004EA814 /* RosyWriterOpenCVRenderer.mm in Sources */,
 				1FDC87D02063B6E300F8D5D9 /* VideoViewController.mm in Sources */,
 				1FA2400B20669900004EA814 /* CVHandler.cpp in Sources */,
 				1FA2400E2066A6D4004EA814 /* SobelHandler.cpp in Sources */,
 				1FDC87B92063AC4300F8D5D9 /* AppDelegate.m in Sources */,
+				1FE3C37F2084E51F00C09FF1 /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

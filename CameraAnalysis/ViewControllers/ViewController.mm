@@ -10,6 +10,8 @@
 #import "VideoViewController.h"
 #import "CameraViewController.h"
 #import "../ProcessWrite/RosyWriterViewController.h"
+#import "SettingViewController.h"
+#import "AboutViewController.h"
 @interface ViewController (){
     NSMutableArray *processArray;
     NSArray *aboutArray;
@@ -22,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"viewDidLoad");
+//    NSLog(@"viewDidLoad");
     self.title = @"Camera analysis";
     processArray = [[NSMutableArray alloc] init];
     handlers.push_back(new CVHandler);
@@ -33,7 +35,7 @@
     
     
     
-    handlers.push_back(new CameraCalibrationHandler);
+//    handlers.push_back(new CameraCalibrationHandler);
     aboutArray = [NSArray arrayWithObjects:@"關於App", @"設定", nil];
     totalArray = [NSArray arrayWithObjects:processArray, aboutArray, nil];
     
@@ -48,14 +50,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"viewWillAppear");
+//    NSLog(@"viewWillAppear");
     [super viewWillAppear:animated];
     self.title = @"Camera analysis";
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"viewWillDisappear");
+//    NSLog(@"viewWillDisappear");
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
     [super viewWillDisappear:animated];
 }
@@ -100,10 +102,12 @@
         case 1:
         {
             if ( indexPath.row == 0 ) {
-                
+                AboutViewController *vc = [[AboutViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
             }
             else if ( indexPath.row == 1 ) {
-                
+                SettingViewController *vc = [[SettingViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
             }
             else {
                 

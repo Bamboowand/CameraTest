@@ -13,11 +13,13 @@
 #include <opencv2/imgcodecs/ios.h>
 
 #include <map>
+#include "CameraParameter.h"
 
 using namespace std;
 
 @interface CameraViewController () {
     SettingView *_settingView;
+    FilterSetList *_settingList;
     map<string, string> _settingMap;
 }
 
@@ -27,30 +29,46 @@ using namespace std;
 
 - (instancetype)initWithHandler:(CVHandler *)handler {
     self.title =  [NSString stringWithUTF8String:handler->get_name()];
-    _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:FilterStyle1];
     _settingMap.clear();
     if ( [self.title isEqualToString:@"Sobel Detection"] ) {
         _settingMap.insert(pair<string, string>("dx","1"));
         _settingMap.insert(pair<string, string>("dy","1"));
         _settingMap.insert(pair<string, string>("ksize","3"));
         handler->set_setting(_settingMap);
+        _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:FilterStyle1];
+    }
+    else if ( [self.title isEqualToString:@"Canny Detection"] ) {
+        _settingMap.insert(pair<string, string>("threshold_1","40"));
+        _settingMap.insert(pair<string, string>("threshold_2","60"));
+        _settingMap.insert(pair<string, string>("aperture_size","3"));
+        _settingMap.insert(pair<string, string>("gradient_l2","1"));
+        handler->set_setting(_settingMap);
+        _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:FilterStyle2];
     }
     else {
-        
+        _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:None];
     }
-
     
     self = [super initWithHandler:handler];
+    if ( _settingView != nil ) {
+        [_settingView setHidden:YES];
+        [self.view addSubview:_settingView];
+    }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDeviceOrientationChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    
+    UIBarButtonItem *settinfItem = [[UIBarButtonItem alloc] initWithTitle:@"Setting" style:UIBarButtonItemStylePlain target:self action:@selector(handleSetting:)];
+    self.navigationItem.rightBarButtonItem = settinfItem;
+    [self addKVO];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    [self removeKVO];
     // Dispose of any resources that can be recreated.
 }
 #pragma mark- Notification method
@@ -98,6 +116,67 @@ using namespace std;
     }
 }
 
+- (IBAction)handleSetting:(id)sender {
+    if ( _settingView != nil )
+        _settingView.hidden = !_settingView.hidden;
+}
+#pragma mark- Key-Value-Observer
+- (void)addKVO {
+    if ( _settingView == nil )
+        return;
+    
+    [_settingView addObserver:self forKeyPath:@"dxSlider.value" options:NSKeyValueObservingOptionNew context:nil];
+    [_settingView addObserver:self forKeyPath:@"dySlider.value" options:NSKeyValueObservingOptionNew context:nil];
+    [_settingView addObserver:self forKeyPath:@"ksizeSlider.value" options:NSKeyValueObservingOptionNew context:nil];
+    
+    [_settingView addObserver:self forKeyPath:@"threshold_1Slider.value" options:NSKeyValueObservingOptionNew context:nil];
+    [_settingView addObserver:self forKeyPath:@"threshold_2Slider.value" options:NSKeyValueObservingOptionNew context:nil];
+    [_settingView addObserver:self forKeyPath:@"apertureSizeSlider.value" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)removeKVO {
+    if ( _settingView == nil )
+        return;
+    
+    [_settingView removeObserver:self forKeyPath:@"dxSlider.value"];
+    [_settingView removeObserver:self forKeyPath:@"dySlider.value"];
+    [_settingView removeObserver:self forKeyPath:@"ksizeSlider.value"];
+    
+    [_settingView removeObserver:self forKeyPath:@"threshold_1Slider.value"];
+    [_settingView removeObserver:self forKeyPath:@"threshold_2Slider.value"];
+    [_settingView removeObserver:self forKeyPath:@"apertureSizeSlider.value"];
+    
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ( [keyPath isEqualToString:@"dxSlider.value"] ) {
+        int newValue = [[change objectForKey:NSKeyValueChangeNewKey] intValue];
+        _settingMap["dx"] = [[NSString stringWithFormat:@"%d", newValue] UTF8String];
+    }
+    else if ( [keyPath isEqualToString:@"dySlider.value"] ) {
+        int newValue = [[change objectForKey:NSKeyValueChangeNewKey] intValue];
+        _settingMap["dy"] = [[NSString stringWithFormat:@"%d", newValue] UTF8String];
+    }
+    else if ( [keyPath isEqualToString:@"ksizeSlider.value"] ) {
+        int newValue = [[change objectForKey:NSKeyValueChangeNewKey] intValue];
+        _settingMap["ksize"] = [[NSString stringWithFormat:@"%d", newValue] UTF8String];
+    }
+    
+    else if ( [keyPath isEqualToString:@"threshold_1Slider.value"] ) {
+        int newValue = [[change objectForKey:NSKeyValueChangeNewKey] intValue];
+        _settingMap["threshold_1"] = [[NSString stringWithFormat:@"%d", newValue] UTF8String];
+    }
+    else if ( [keyPath isEqualToString:@"threshold_2Slider.value"] ) {
+        int newValue = [[change objectForKey:NSKeyValueChangeNewKey] intValue];
+        _settingMap["threshold_2"] = [[NSString stringWithFormat:@"%d", newValue] UTF8String];
+    }
+    else if ( [keyPath isEqualToString:@"apertureSizeSlider.value"] ) {
+        int newValue = [[change objectForKey:NSKeyValueChangeNewKey] intValue];
+        _settingMap["aperture_size"] = [[NSString stringWithFormat:@"%d", newValue] UTF8String];
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
 
 /*
 #pragma mark - Navigation
