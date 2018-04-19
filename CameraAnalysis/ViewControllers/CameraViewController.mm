@@ -58,10 +58,11 @@ using namespace std;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDeviceOrientationChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
     
-    UIBarButtonItem *settinfItem = [[UIBarButtonItem alloc] initWithTitle:@"Setting" style:UIBarButtonItemStylePlain target:self action:@selector(handleSetting:)];
-    self.navigationItem.rightBarButtonItem = settinfItem;
+//    UIBarButtonItem *settinfItem = [[UIBarButtonItem alloc] initWithTitle:@"Setting" style:UIBarButtonItemStylePlain target:self action:@selector(handleSetting:)];
+//    self.navigationItem.rightBarButtonItem = settinfItem;
     [self addKVO];
     // Do any additional setup after loading the view from its nib.
 }

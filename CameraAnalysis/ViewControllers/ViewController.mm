@@ -36,7 +36,8 @@
     
     
 //    handlers.push_back(new CameraCalibrationHandler);
-    aboutArray = [NSArray arrayWithObjects:@"關於App", @"設定", nil];
+        aboutArray = [NSArray arrayWithObjects:@"關於App", nil];
+//    aboutArray = [NSArray arrayWithObjects:@"關於App", @"設定", nil];
     totalArray = [NSArray arrayWithObjects:processArray, aboutArray, nil];
     
     for (int i = 0; i < handlers.size(); i++) {

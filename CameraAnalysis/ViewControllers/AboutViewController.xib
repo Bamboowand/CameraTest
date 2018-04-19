@@ -19,16 +19,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pvq-30-ogJ">
-                    <rect key="frame" x="16" y="95" width="343" height="499"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="關於此App，是為了促進電腦視覺處理的技術而開發．當研究者想要簡單的知道目前景象的有什麼影像資訊能使用時，此App能發揮最大的效用．本App提供常用的邊緣檢測，亮度偵測等，此後，也會發展相機標定技術與ARKit的相關技術，還情大家期待．" translatesAutoresizingMaskIntoConstraints="NO" id="pvq-30-ogJ">
+                    <rect key="frame" x="10" y="80" width="355" height="577"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Farah" family="Farah" pointSize="24"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="pvq-30-ogJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="GND-bg-LHD"/>
+                <constraint firstAttribute="bottom" secondItem="pvq-30-ogJ" secondAttribute="bottom" constant="10" id="NdN-ru-7mg"/>
+                <constraint firstItem="pvq-30-ogJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="NjX-kd-GDM"/>
+                <constraint firstAttribute="trailing" secondItem="pvq-30-ogJ" secondAttribute="trailing" constant="10" id="g2a-sA-Aec"/>
+            </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
