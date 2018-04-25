@@ -16,6 +16,7 @@ void CVHandler::set_setting(map<string, string> &setting_map) {
     setting_map_ = &setting_map;
 }
 
+
 const char* CVHandler::get_name() {
     return "Camera";
 }

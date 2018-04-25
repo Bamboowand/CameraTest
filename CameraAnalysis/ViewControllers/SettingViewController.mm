@@ -17,8 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    SettingTableView *setting = [[SettingTableView alloc] initWithFrame:CGRectMake(0, 150, 320, 400) Style:kFilterStyle1];
-    [self.view addSubview:setting];
+
     // Do any additional setup after loading the view from its nib.
 }
 

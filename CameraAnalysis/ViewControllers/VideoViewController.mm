@@ -12,7 +12,6 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs/ios.h>
 
-#include <map>
 
 using namespace std;
 @interface VideoViewController () {

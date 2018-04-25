@@ -6,21 +6,19 @@
 //  Copyright © 2018年 ChenWei. All rights reserved.
 //
 
+#include "CameraParameter.hpp"
 #import <UIKit/UIKit.h>
 #import "SliderTableViewCell.h"
 
-typedef enum SettingStyle1{
-    kFilterStyle1,
-    kFilterStyle2,
-    kNone
-}SettingStyle1;
+
 
 @interface SettingTableView : UITableView <UITableViewDelegate, UITableViewDataSource>
 {
-    SettingStyle1 _style;
+    FilterSetArray *_settingArray;
+    NSMutableArray *_titleArr;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame Style:(SettingStyle1)style;
+- (instancetype)initWithFrame:(CGRect)frame settingDictonary:(FilterSetArray *)array;
 
 
 @end

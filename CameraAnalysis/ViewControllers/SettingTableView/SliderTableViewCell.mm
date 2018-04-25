@@ -26,7 +26,7 @@
     return self;
 }
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier Action:(SEL)action {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier action:(SEL)action {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     [self.valueSlider addTarget:self action:action forControlEvents:UIControlEventValueChanged];
     return self;

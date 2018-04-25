@@ -6,21 +6,23 @@
 //  Copyright © 2018年 ChenWei. All rights reserved.
 //
 
-#import "CameraViewController.h"
-#import "SettingView.h"
-
+#include "CameraParameter.hpp"
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs/ios.h>
 
-#include <map>
-#include "CameraParameter.h"
+#import "CameraViewController.h"
+#import "SettingView.h"
+
+
+
+
 
 using namespace std;
 
 @interface CameraViewController () {
     SettingView *_settingView;
-    FilterSetList *_settingList;
     map<string, string> _settingMap;
+    CVHandler *_handler;
 }
 
 @end
@@ -29,12 +31,15 @@ using namespace std;
 
 - (instancetype)initWithHandler:(CVHandler *)handler {
     self.title =  [NSString stringWithUTF8String:handler->get_name()];
+    _handler = handler;
     _settingMap.clear();
     if ( [self.title isEqualToString:@"Sobel Detection"] ) {
         _settingMap.insert(pair<string, string>("dx","1"));
         _settingMap.insert(pair<string, string>("dy","1"));
         _settingMap.insert(pair<string, string>("ksize","3"));
-        handler->set_setting(_settingMap);
+        _handler->set_setting(_settingMap);
+        
+        string name = _handler->get_name();
         _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:FilterStyle1];
     }
     else if ( [self.title isEqualToString:@"Canny Detection"] ) {
@@ -42,14 +47,14 @@ using namespace std;
         _settingMap.insert(pair<string, string>("threshold_2","60"));
         _settingMap.insert(pair<string, string>("aperture_size","3"));
         _settingMap.insert(pair<string, string>("gradient_l2","1"));
-        handler->set_setting(_settingMap);
+        _handler->set_setting(_settingMap);
         _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:FilterStyle2];
     }
     else {
         _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:None];
     }
     
-    self = [super initWithHandler:handler];
+    self = [super initWithHandler:_handler];
     if ( _settingView != nil ) {
         [_settingView setHidden:YES];
         [self.view addSubview:_settingView];

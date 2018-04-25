@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *valueSlider;
 
 - (instancetype)initWithAction:(SEL)action;
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier Action:(SEL)action;
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier action:(SEL)action;
 
 + (SliderTableViewCell *)cell;
 
