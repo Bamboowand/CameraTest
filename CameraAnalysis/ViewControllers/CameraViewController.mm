@@ -12,6 +12,8 @@
 
 #import "CameraViewController.h"
 #import "SettingView.h"
+#import "SettingTableView.h"
+
 
 
 
@@ -23,15 +25,47 @@ using namespace std;
     SettingView *_settingView;
     map<string, string> _settingMap;
     CVHandler *_handler;
+    SettingTableView *_settingTableView;
+    
+    SettingData _settingData;
 }
 
 @end
 
 @implementation CameraViewController
+- (void)initSettingData {
+    FilterSetArray sobelArrar;
+    SettingViewUI ksizeUI;
+    ksizeUI.uiname = (char *)"ksize";
+    ksizeUI.type = SettingUITypeSlider;
+    ksizeUI.uivalue.sliderValue = SliderUIValue(31, 3, 3, true, (char *)"", (char *)"");
+    
+    SettingViewUI dxsizeUI;
+    dxsizeUI.uiname = (char *)"dx value";
+    dxsizeUI.type = SettingUITypeSlider;
+    dxsizeUI.uivalue.sliderValue = SliderUIValue(31, 0, 1, false, (char *)"", (char *)"");
+    sobelArrar.push_back(dxsizeUI);
+    
+    SettingViewUI dysizeUI;
+    dysizeUI.uiname = (char *)"dy value";
+    dysizeUI.type = SettingUITypeSlider;
+    dysizeUI.uivalue.sliderValue = SliderUIValue(31, 0, 1, false, (char *)"", (char *)"");
+    sobelArrar.push_back(dysizeUI);
+    string sobelName = "test";
+    _settingData.push_back(pair<string, FilterSetArray>(sobelName, sobelArrar));
+//    ksizeUI.uivalue.sliderValue.max = 31;
+//    ksizeUI.uivalue.sliderValue.min = 3;
+//    ksizeUI.uivalue.sliderValue.value = 3;
+//    ksizeUI.uivalue.sliderValue.oddValue = true;
+    
+    
+//    _settingData.push_back();
+}
 
 - (instancetype)initWithHandler:(CVHandler *)handler {
     self.title =  [NSString stringWithUTF8String:handler->get_name()];
     _handler = handler;
+    [self initSettingData];
     _settingMap.clear();
     if ( [self.title isEqualToString:@"Sobel Detection"] ) {
         _settingMap.insert(pair<string, string>("dx","1"));
@@ -51,7 +85,10 @@ using namespace std;
         _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:FilterStyle2];
     }
     else {
-        _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:None];
+        
+//        _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:None];
+//        _settingTableView = [[SettingTableView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) settingDictonary: &_settingData.at(0).second];
+//        [self.view addSubview:_settingTableView];
     }
     
     self = [super initWithHandler:_handler];

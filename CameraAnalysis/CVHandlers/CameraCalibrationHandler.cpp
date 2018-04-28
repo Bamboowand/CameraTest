@@ -12,7 +12,7 @@ CameraCalibrationHandler::CameraCalibrationHandler() {
 }
 
 void CameraCalibrationHandler::ProcessFrame(const Mat &src, Mat &dst) {
-    
+    dst = src;
 }
 
 const char* CameraCalibrationHandler::get_name() {

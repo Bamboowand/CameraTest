@@ -47,13 +47,13 @@
     UITableViewCell *cell;
     
     SettingUIType type = _settingArray->at(indexPath.row).type;
-    if ( type == SettungUITypeSlider ) {
+    if ( type == SettingUITypeSlider ) {
         SliderTableViewCell *sliderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if ( !sliderCell ) {
             sliderCell = [[SliderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier action:@selector(changeValueBySlider:)];
 
             sliderCell.tag = indexPath.row + 100;
-            NSString *name = [NSString stringWithCString:_settingArray->at(indexPath.row).uiname.c_str() encoding:[NSString defaultCStringEncoding]];
+            NSString *name = [NSString stringWithCString:_settingArray->at(indexPath.row).uiname encoding:[NSString defaultCStringEncoding]];
             sliderCell.titleLabel.text = name;
             sliderCell.valueSlider.maximumValue = _settingArray->at(indexPath.row).uivalue.sliderValue.max;
             sliderCell.valueSlider.minimumValue = _settingArray->at(indexPath.row).uivalue.sliderValue.min;

@@ -42,8 +42,8 @@
  */
 using namespace std;
 typedef enum SettungUIType {
-    SettungUITypeSlider,
-    SettungUITypeSwitch
+    SettingUITypeSwitch,
+    SettingUITypeSlider
 } SettingUIType;
 
 typedef struct SliderUIValue {
@@ -51,24 +51,25 @@ typedef struct SliderUIValue {
     float min;
     float value;
     bool oddValue = false;
-    string maxContract = "";
-    string minContract = "";
+    char* maxContract;
+    char* minContract;
+    SliderUIValue(float max_value, float min_value, float init_value, bool isOdd, char* maxAboutUI, char* minAboutUI): max(max_value), min(min_value), value(init_value), oddValue(isOdd), maxContract(maxAboutUI), minContract(minAboutUI) {};
 } SliderUIValue;
 
 typedef union SettingUIValue {
-    SliderUIValue sliderValue;
     bool switchValue;
+    SliderUIValue sliderValue;
 } SettingUIValue;
 
 
 typedef struct SettingViewUI {
-    string uiname;
-    SettingUIType type;
-    SettingUIValue uivalue;
+    char* uiname;
+    SettingUIType type = SettingUITypeSwitch;
+    SettingUIValue uivalue = { false };
 } SettingViewUI;
 
 typedef vector<SettingViewUI> FilterSetArray;
-typedef vector<pair<string, vector<FilterSetArray>>> SettingData;
+typedef vector<pair<string, FilterSetArray>> SettingData;
 
 //typedef map<string, string> SettingDict;
 //typedef map<string, SettingDict> FilterSetDict;
