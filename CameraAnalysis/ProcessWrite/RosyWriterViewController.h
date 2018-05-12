@@ -11,6 +11,9 @@
 #import <UIKit/UIKit.h>
 #import "RosyWriterCapturePipeline.h"
 
+#import "BaseFilterModel.h"
+#import "SobelFilterModel.h"
+
 #include "../CVHandlers/CVHandler.hpp"
 #include "../CVHandlers/SobelHandler.hpp"
 #include "../CVHandlers/CameraCalibrationHandler.hpp"
@@ -20,9 +23,12 @@
 
 @interface RosyWriterViewController : UIViewController {
     BOOL _recording;
+    CVHandler *_handler;
+    BaseFilterModel *_filterModel;
 }
 
 - (instancetype)initWithHandler:(CVHandler *)handler;
+- (instancetype)initWithFilterModel:(BaseFilterModel *)filterModel;
 - (IBAction)toggleRecording:(UIButton *)sender;
 - (IBAction)takePicture:(UIButton *)sender;
 @end

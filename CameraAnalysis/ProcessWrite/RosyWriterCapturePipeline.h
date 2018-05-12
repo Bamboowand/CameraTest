@@ -18,6 +18,8 @@
 
 - (instancetype)initWithDelegate:(id<RosyWriterCapturePipelineDelegate>)delegate callbackQueue:(dispatch_queue_t)queue handler:(CVHandler *)handler; // delegate is weak referenced
 
+- (instancetype)initWithDelegate:(id<RosyWriterCapturePipelineDelegate>)delegate callbackQueue:(dispatch_queue_t)queue filterModel:(BaseFilterModel *)filterModel; // delegate is weak referenced
+
 // These methods are synchronous
 - (void)startRunning;
 - (void)stopRunning;

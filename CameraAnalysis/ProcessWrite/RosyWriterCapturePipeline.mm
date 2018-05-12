@@ -127,6 +127,44 @@ typedef NS_ENUM( NSInteger, RosyWriterRecordingStatus )
 	return self;
 }
 
+- (instancetype)initWithDelegate:(id<RosyWriterCapturePipelineDelegate>)delegate callbackQueue:(dispatch_queue_t)queue filterModel:(BaseFilterModel *)filterModel {
+    
+    NSParameterAssert( delegate != nil );
+    NSParameterAssert( queue != nil );
+    
+    self = [super init];
+    if ( self )
+    {
+        _previousSecondTimestamps = [[NSMutableArray alloc] init];
+        _recordingOrientation = AVCaptureVideoOrientationPortrait;
+        
+        _recordingURL = [[NSURL alloc] initFileURLWithPath:[NSString pathWithComponents:@[NSTemporaryDirectory(), @"Movie.MOV"]]];
+        
+        _sessionQueue = dispatch_queue_create( "com.apple.sample.capturepipeline.session", DISPATCH_QUEUE_SERIAL );
+        
+        // In a multi-threaded producer consumer system it's generally a good idea to make sure that producers do not get starved of CPU time by their consumers.
+        // In this app we start with VideoDataOutput frames on a high priority queue, and downstream consumers use default priority queues.
+        // Audio uses a default priority queue because we aren't monitoring it live and just want to get it into the movie.
+        // AudioDataOutput can tolerate more latency than VideoDataOutput as its buffers aren't allocated out of a fixed size pool.
+        _videoDataOutputQueue = dispatch_queue_create( "com.apple.sample.capturepipeline.video", DISPATCH_QUEUE_SERIAL );
+        dispatch_set_target_queue( _videoDataOutputQueue, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0 ) );
+        
+        // USE_XXX_RENDERER is set in the project's build settings for each target
+        
+        
+        //        _renderer = [[RosyWriterOpenCVRenderer alloc] init];
+//        _renderer = [[RosyWriterOpenCVRenderer alloc] initWithHandler:handler];
+        _renderer = [[RosyWriterOpenCVRenderer alloc] initWithFilterModel:filterModel];
+        _pipelineRunningTask = UIBackgroundTaskInvalid;
+        _delegate = delegate;
+        _delegateCallbackQueue = queue;
+        
+        _photoOutput = [[AVCapturePhotoOutput alloc] init];
+        isCapturePhoto = NO;
+    }
+    return self;
+}
+
 - (void)dealloc
 {
 	[self teardownCaptureSession];

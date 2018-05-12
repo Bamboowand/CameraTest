@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "../ProcessWrite/RosyWriterViewController.h"
 
+#import "BaseFilterModel.h"
+#import "SobelFilterModel.h"
+
 @interface CameraViewController :RosyWriterViewController
 @property (strong, nonatomic) IBOutlet UISegmentedControl *outputSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
 - (instancetype)initWithHandler:(CVHandler *)handler;
+- (instancetype)initWithFilterModel:(BaseFilterModel *)filterModel;
 @end

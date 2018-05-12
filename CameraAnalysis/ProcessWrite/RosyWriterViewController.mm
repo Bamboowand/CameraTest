@@ -23,7 +23,6 @@
 	NSTimer *_labelTimer;
 	OpenGLPixelBufferView *_previewView;
 	RosyWriterCapturePipeline *_capturePipeline;
-    CVHandler *_handler;
 }
 
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *recordButton;
@@ -53,6 +52,14 @@
     return self;
 }
 
+- (instancetype)initWithFilterModel:(BaseFilterModel *)filterModel {
+    if ( !self ) {
+        self = [super init];
+    }
+    _filterModel = filterModel;
+    return self;
+}
+
 - (void)applicationDidEnterBackground
 {
 	// Avoid using the GPU in the background
@@ -73,7 +80,12 @@
 
 - (void)viewDidLoad
 {
-	_capturePipeline = [[RosyWriterCapturePipeline alloc] initWithDelegate:self callbackQueue:dispatch_get_main_queue() handler:_handler];
+    if ( _handler != nil ) {
+        _capturePipeline = [[RosyWriterCapturePipeline alloc] initWithDelegate:self callbackQueue:dispatch_get_main_queue() handler:_handler];
+    }
+    else {
+        _capturePipeline = [[RosyWriterCapturePipeline alloc] initWithDelegate:self callbackQueue:dispatch_get_main_queue() filterModel:_filterModel];
+    }
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(applicationDidEnterBackground)

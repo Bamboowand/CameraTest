@@ -14,17 +14,12 @@
 #import "SettingView.h"
 #import "SettingTableView.h"
 
-
-
-
-
-
 using namespace std;
 
 @interface CameraViewController () {
     SettingView *_settingView;
     map<string, string> _settingMap;
-    CVHandler *_handler;
+//    CVHandler *_handler;
     SettingTableView *_settingTableView;
     
     SettingData _settingData;
@@ -33,6 +28,16 @@ using namespace std;
 @end
 
 @implementation CameraViewController
+#pragma maek- Init
+- (instancetype)initWithFilterModel:(BaseFilterModel *)filterModel {
+    self.title = [filterModel getFilterName];
+    if ( !self )
+        self = [super initWithFilterModel:filterModel];
+    _filterModel = filterModel;
+    
+    return self;
+}
+
 - (void)initSettingData {
     FilterSetArray sobelArrar;
     SettingViewUI ksizeUI;
@@ -98,6 +103,7 @@ using namespace std;
     }
     return self;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [UIApplication sharedApplication].idleTimerDisabled = YES;

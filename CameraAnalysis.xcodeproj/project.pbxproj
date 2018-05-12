@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2AFE8320A34D1F008FD3BF /* BaseFilterModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AFE8220A34D1F008FD3BF /* BaseFilterModel.mm */; };
+		1F2AFE8720A66FA6008FD3BF /* SobelFilterModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AFE8620A66FA6008FD3BF /* SobelFilterModel.mm */; };
 		1F59058E206FD89300084217 /* ThresholdHanlder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F59058C206FD89300084217 /* ThresholdHanlder.cpp */; };
 		1F590591206FDE0A00084217 /* CannyHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F59058F206FDE0A00084217 /* CannyHandler.cpp */; };
 		1FA23FFB2064073A004EA814 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA23FFA2064073A004EA814 /* QuartzCore.framework */; };
@@ -56,6 +58,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F2AFE8120A34D1F008FD3BF /* BaseFilterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseFilterModel.h; path = CameraAnalysis/ViewControllers/FilterModel/BaseFilterModel.h; sourceTree = SOURCE_ROOT; };
+		1F2AFE8220A34D1F008FD3BF /* BaseFilterModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = BaseFilterModel.mm; path = CameraAnalysis/ViewControllers/FilterModel/BaseFilterModel.mm; sourceTree = SOURCE_ROOT; };
+		1F2AFE8520A66FA6008FD3BF /* SobelFilterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SobelFilterModel.h; sourceTree = "<group>"; };
+		1F2AFE8620A66FA6008FD3BF /* SobelFilterModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SobelFilterModel.mm; sourceTree = "<group>"; };
 		1F59058C206FD89300084217 /* ThresholdHanlder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ThresholdHanlder.cpp; sourceTree = "<group>"; };
 		1F59058D206FD89300084217 /* ThresholdHanlder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ThresholdHanlder.hpp; sourceTree = "<group>"; };
 		1F59058F206FDE0A00084217 /* CannyHandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CannyHandler.cpp; sourceTree = "<group>"; };
@@ -154,6 +160,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F2AFE8420A34D27008FD3BF /* FilterModel */ = {
+			isa = PBXGroup;
+			children = (
+				1F2AFE8120A34D1F008FD3BF /* BaseFilterModel.h */,
+				1F2AFE8220A34D1F008FD3BF /* BaseFilterModel.mm */,
+				1F2AFE8520A66FA6008FD3BF /* SobelFilterModel.h */,
+				1F2AFE8620A66FA6008FD3BF /* SobelFilterModel.mm */,
+			);
+			path = FilterModel;
+			sourceTree = "<group>";
+		};
 		1FA2400820669900004EA814 /* CVHandlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +257,7 @@
 				1FDC87CF2063B6E300F8D5D9 /* VideoViewController.xib */,
 				1FA2409D206E81CA004EA814 /* CameraViewController.h */,
 				1FA2409E206E81CA004EA814 /* CameraViewController.mm */,
+				1F2AFE8420A34D27008FD3BF /* FilterModel */,
 				1FA2409F206E81CA004EA814 /* CameraViewController.xib */,
 			);
 			path = ViewControllers;
@@ -404,6 +422,7 @@
 			files = (
 				1F59058E206FD89300084217 /* ThresholdHanlder.cpp in Sources */,
 				1FA240112066A895004EA814 /* CameraCalibrationHandler.cpp in Sources */,
+				1F2AFE8320A34D1F008FD3BF /* BaseFilterModel.mm in Sources */,
 				1FE3C3762084DBC100C09FF1 /* SettingTableView.mm in Sources */,
 				1FA24017206797E0004EA814 /* SettingView.m in Sources */,
 				1FA24098206E774C004EA814 /* ShaderUtilities.c in Sources */,
@@ -414,6 +433,7 @@
 				1FE3C37A2084E4F800C09FF1 /* SettingViewController.mm in Sources */,
 				1FA24099206E774C004EA814 /* MovieRecorder.m in Sources */,
 				1FDC87C72063AC4300F8D5D9 /* main.mm in Sources */,
+				1F2AFE8720A66FA6008FD3BF /* SobelFilterModel.mm in Sources */,
 				1FA24093206E774C004EA814 /* RosyWriterViewController.mm in Sources */,
 				1FA240A0206E81CA004EA814 /* CameraViewController.mm in Sources */,
 				1F590591206FDE0A00084217 /* CannyHandler.cpp in Sources */,
@@ -573,7 +593,7 @@
 				INFOPLIST_FILE = CameraAnalysis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wildcard.cameraanalysis;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wildcard.cameraanalysis-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e033ff45-5d59-4468-b1d0-701630b2c8c7";
 				PROVISIONING_PROFILE_SPECIFIER = Wildcard;
@@ -595,7 +615,7 @@
 				INFOPLIST_FILE = CameraAnalysis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wildcard.cameraanalysis;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wildcard.cameraanalysis-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e033ff45-5d59-4468-b1d0-701630b2c8c7";
 				PROVISIONING_PROFILE_SPECIFIER = Wildcard;

@@ -27,6 +27,13 @@
     return self;
 }
 
+- (instancetype)initWithFilterModel:(BaseFilterModel *)filterModel {
+    if ( !self )
+        self = [super init];
+    _filterModel = filterModel;
+    return self;
+}
+
 - (BOOL)operatesInPlace
 {
 	return YES;
@@ -66,7 +73,13 @@
 	cv::Mat bgraImage = cv::Mat( (int)height, (int)extendedWidth, CV_8UC4, base );
     cv::Mat imageCopy, dstImage;
     imageCopy = bgraImage.clone();
-    _handler->ProcessFrame(imageCopy, dstImage);
+    if ( _handler != nil ) {
+        _handler->ProcessFrame(imageCopy, dstImage);
+    }
+    
+    if ( _filterModel ) {
+        [_filterModel processFrameMat:imageCopy output:dstImage];
+    }
     
 #ifdef DEBUG
     dstImage.copyTo(bgraImage);

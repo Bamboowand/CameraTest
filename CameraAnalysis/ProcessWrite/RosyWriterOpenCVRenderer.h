@@ -9,6 +9,9 @@
 
 #import "RosyWriterRenderer.h"
 
+#import "BaseFilterModel.h"
+#import "SobelFilterModel.h"
+
 #include "../CVHandlers/CVHandler.hpp"
 #include "../CVHandlers/SobelHandler.hpp"
 #include "../CVHandlers/CameraCalibrationHandler.hpp"
@@ -18,8 +21,10 @@
 
 @interface RosyWriterOpenCVRenderer : NSObject <RosyWriterRenderer> {
     CVHandler *_handler;
+    BaseFilterModel *_filterModel;
 }
 - (instancetype)initWithHandler:(CVHandler *)handler;
+- (instancetype)initWithFilterModel:(BaseFilterModel *)filterModel;
 
 
 @end

@@ -12,11 +12,15 @@
 #import "../ProcessWrite/RosyWriterViewController.h"
 #import "SettingViewController.h"
 #import "AboutViewController.h"
+
+#import "BaseFilterModel.h"
+#import "SobelFilterModel.h"
 @interface ViewController (){
     NSMutableArray *processArray;
     NSArray *aboutArray;
     NSArray *totalArray;
     std::vector<CVHandler*> handlers;
+    NSArray *_filterModels;
 }
 @end
 
@@ -32,16 +36,22 @@
     handlers.push_back(new GaussianBlurHandler);
     handlers.push_back(new SobleHandler);
     handlers.push_back(new CannyHandler);
-    
-    
-    
 //    handlers.push_back(new CameraCalibrationHandler);
+//    for (int i = 0; i < handlers.size(); i++) {
+//        [processArray addObject:[NSString stringWithUTF8String:handlers[i]->get_name()]];
+//    }
+    
+    _filterModels = [NSArray arrayWithObjects:[BaseFilterModel new],
+                     [SobelFilterModel new], nil];
+    for ( int i = 0; i < _filterModels.count; i++ ) {
+        BaseFilterModel *model = [_filterModels objectAtIndex:i];
+        [processArray addObject:[model getFilterName]];
+    }
+
     aboutArray = [NSArray arrayWithObjects:@"關於App", @"設定", nil];
     totalArray = [NSArray arrayWithObjects:processArray, aboutArray, nil];
+
     
-    for (int i = 0; i < handlers.size(); i++) {
-       [processArray addObject:[NSString stringWithUTF8String:handlers[i]->get_name()]];
-    }
 
 
     self.tableView.delegate = self;
@@ -95,7 +105,8 @@
     switch (indexPath.section) {
         case 0:
         {
-            CameraViewController *camera = [[CameraViewController alloc] initWithHandler:handlers[indexPath.row]];
+//            CameraViewController *camera = [[CameraViewController alloc] initWithHandler:handlers[indexPath.row]];
+            CameraViewController *camera = [[CameraViewController alloc] initWithFilterModel:_filterModels[indexPath.row]];
             [self.navigationController pushViewController:camera animated:YES];
             break;
         }
