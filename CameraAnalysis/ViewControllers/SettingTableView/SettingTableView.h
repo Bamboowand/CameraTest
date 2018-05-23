@@ -9,6 +9,8 @@
 #include "CameraParameter.hpp"
 #import <UIKit/UIKit.h>
 #import "SliderTableViewCell.h"
+#import "CustomTableViewCell.h"
+#import "CellModel.h"
 
 
 
@@ -16,9 +18,11 @@
 {
     FilterSetArray *_settingArray;
     NSMutableArray *_titleArr;
+    NSArray *_settingUIArray;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame settingDictonary:(FilterSetArray *)array;
+- (instancetype)initWithFrame:(CGRect)frame settingUIArray:(NSArray *)array;
 
-
+- (void)releaseCell;
 @end

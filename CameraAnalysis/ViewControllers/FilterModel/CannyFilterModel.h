@@ -1,19 +1,19 @@
 //
-//  SobelFilterModel.h
+//  CannyFilterModel.h
 //  CameraAnalysis
 //
-//  Created by ChenWei on 2018/5/12.
+//  Created by ChenWei on 2018/5/13.
 //  Copyright © 2018年 ChenWei. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "BaseFilterModel.h"
 
-@interface SobelFilterModel : BaseFilterModel {
-    int _dx, _dy, _ksize;
+@interface CannyFilterModel : BaseFilterModel {
+    double _threshold_1, _threshold_2;
+    int _aperture_size;
+    bool _gradient_l2;
 }
 
 - (NSString *)getFilterName;
 - (void)processFrameMat:(const Mat&) src output:(Mat &)dst;
-
 @end

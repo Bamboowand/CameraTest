@@ -35,6 +35,10 @@ using namespace std;
         self = [super initWithFilterModel:filterModel];
     _filterModel = filterModel;
     
+    _settingTableView = [[SettingTableView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) settingUIArray:[_filterModel getFilterUIArray]];
+    _settingTableView.hidden = YES;
+    [self.view addSubview:_settingTableView];
+    
     return self;
 }
 
@@ -90,7 +94,7 @@ using namespace std;
         _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:FilterStyle2];
     }
     else {
-        
+//        _settingView = [[SettingView alloc] initWith]
 //        _settingView = [[SettingView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) Style:None];
 //        _settingTableView = [[SettingTableView alloc] initWithFrame:CGRectMake(50, 100, [UIScreen mainScreen].bounds.size.width-100, 400) settingDictonary: &_settingData.at(0).second];
 //        [self.view addSubview:_settingTableView];
@@ -117,6 +121,7 @@ using namespace std;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    [_settingTableView releaseCell];
     [self removeKVO];
     // Dispose of any resources that can be recreated.
 }
@@ -168,6 +173,7 @@ using namespace std;
 - (IBAction)handleSetting:(id)sender {
     if ( _settingView != nil )
         _settingView.hidden = !_settingView.hidden;
+    _settingTableView.hidden = !_settingTableView.hidden;
 }
 #pragma mark- Key-Value-Observer
 - (void)addKVO {

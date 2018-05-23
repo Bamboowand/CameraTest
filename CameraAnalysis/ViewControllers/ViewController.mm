@@ -42,7 +42,8 @@
 //    }
     
     _filterModels = [NSArray arrayWithObjects:[BaseFilterModel new],
-                     [SobelFilterModel new], nil];
+                     [SobelFilterModel new],
+                     [CannyFilterModel new], nil];
     for ( int i = 0; i < _filterModels.count; i++ ) {
         BaseFilterModel *model = [_filterModels objectAtIndex:i];
         [processArray addObject:[model getFilterName]];

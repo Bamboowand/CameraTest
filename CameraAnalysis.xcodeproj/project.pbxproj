@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		1F2AFE8320A34D1F008FD3BF /* BaseFilterModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AFE8220A34D1F008FD3BF /* BaseFilterModel.mm */; };
 		1F2AFE8720A66FA6008FD3BF /* SobelFilterModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AFE8620A66FA6008FD3BF /* SobelFilterModel.mm */; };
+		1F2AFE8A20A881E1008FD3BF /* CannyFilterModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AFE8920A881E1008FD3BF /* CannyFilterModel.mm */; };
 		1F59058E206FD89300084217 /* ThresholdHanlder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F59058C206FD89300084217 /* ThresholdHanlder.cpp */; };
 		1F590591206FDE0A00084217 /* CannyHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F59058F206FDE0A00084217 /* CannyHandler.cpp */; };
+		1F98542A20ADB9D9004D587F /* CustomTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F98542820ADB9D9004D587F /* CustomTableViewCell.mm */; };
+		1F98542B20ADB9D9004D587F /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F98542920ADB9D9004D587F /* CustomTableViewCell.xib */; };
+		1F98542E20AF262C004D587F /* CellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F98542D20AF262C004D587F /* CellModel.m */; };
 		1FA23FFB2064073A004EA814 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA23FFA2064073A004EA814 /* QuartzCore.framework */; };
 		1FA23FFE2064076E004EA814 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA23FFC2064076E004EA814 /* CoreGraphics.framework */; };
 		1FA23FFF2064076E004EA814 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA23FFD2064076E004EA814 /* CoreImage.framework */; };
@@ -62,10 +66,17 @@
 		1F2AFE8220A34D1F008FD3BF /* BaseFilterModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = BaseFilterModel.mm; path = CameraAnalysis/ViewControllers/FilterModel/BaseFilterModel.mm; sourceTree = SOURCE_ROOT; };
 		1F2AFE8520A66FA6008FD3BF /* SobelFilterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SobelFilterModel.h; sourceTree = "<group>"; };
 		1F2AFE8620A66FA6008FD3BF /* SobelFilterModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SobelFilterModel.mm; sourceTree = "<group>"; };
+		1F2AFE8820A881E1008FD3BF /* CannyFilterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CannyFilterModel.h; sourceTree = "<group>"; };
+		1F2AFE8920A881E1008FD3BF /* CannyFilterModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CannyFilterModel.mm; sourceTree = "<group>"; };
 		1F59058C206FD89300084217 /* ThresholdHanlder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ThresholdHanlder.cpp; sourceTree = "<group>"; };
 		1F59058D206FD89300084217 /* ThresholdHanlder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ThresholdHanlder.hpp; sourceTree = "<group>"; };
 		1F59058F206FDE0A00084217 /* CannyHandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CannyHandler.cpp; sourceTree = "<group>"; };
 		1F590590206FDE0A00084217 /* CannyHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CannyHandler.hpp; sourceTree = "<group>"; };
+		1F98542720ADB9D9004D587F /* CustomTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		1F98542820ADB9D9004D587F /* CustomTableViewCell.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomTableViewCell.mm; sourceTree = "<group>"; };
+		1F98542920ADB9D9004D587F /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		1F98542C20AF262C004D587F /* CellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellModel.h; sourceTree = "<group>"; };
+		1F98542D20AF262C004D587F /* CellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellModel.m; sourceTree = "<group>"; };
 		1FA23FFA2064073A004EA814 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1FA23FFC2064076E004EA814 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1FA23FFD2064076E004EA814 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -167,6 +178,8 @@
 				1F2AFE8220A34D1F008FD3BF /* BaseFilterModel.mm */,
 				1F2AFE8520A66FA6008FD3BF /* SobelFilterModel.h */,
 				1F2AFE8620A66FA6008FD3BF /* SobelFilterModel.mm */,
+				1F2AFE8820A881E1008FD3BF /* CannyFilterModel.h */,
+				1F2AFE8920A881E1008FD3BF /* CannyFilterModel.mm */,
 			);
 			path = FilterModel;
 			sourceTree = "<group>";
@@ -331,9 +344,14 @@
 		1FE3C36E2084DBC000C09FF1 /* SettingTableView */ = {
 			isa = PBXGroup;
 			children = (
+				1F98542C20AF262C004D587F /* CellModel.h */,
+				1F98542D20AF262C004D587F /* CellModel.m */,
 				1FE3C36F2084DBC000C09FF1 /* SliderTableViewCell.mm */,
 				1FE3C3722084DBC000C09FF1 /* SliderTableViewCell.h */,
 				1FE3C3702084DBC000C09FF1 /* SliderTableViewCell.xib */,
+				1F98542820ADB9D9004D587F /* CustomTableViewCell.mm */,
+				1F98542720ADB9D9004D587F /* CustomTableViewCell.h */,
+				1F98542920ADB9D9004D587F /* CustomTableViewCell.xib */,
 				1FE3C3712084DBC000C09FF1 /* SettingTableView.mm */,
 				1FE3C3732084DBC000C09FF1 /* SettingTableView.h */,
 			);
@@ -401,6 +419,7 @@
 			files = (
 				1FDC87C42063AC4300F8D5D9 /* LaunchScreen.storyboard in Resources */,
 				1FE3C37B2084E4F800C09FF1 /* SettingViewController.xib in Resources */,
+				1F98542B20ADB9D9004D587F /* CustomTableViewCell.xib in Resources */,
 				1FA240A1206E81CA004EA814 /* CameraViewController.xib in Resources */,
 				1FA24096206E774C004EA814 /* myFilter.vsh in Resources */,
 				1FDC87C12063AC4300F8D5D9 /* Assets.xcassets in Resources */,
@@ -422,6 +441,7 @@
 			files = (
 				1F59058E206FD89300084217 /* ThresholdHanlder.cpp in Sources */,
 				1FA240112066A895004EA814 /* CameraCalibrationHandler.cpp in Sources */,
+				1F98542E20AF262C004D587F /* CellModel.m in Sources */,
 				1F2AFE8320A34D1F008FD3BF /* BaseFilterModel.mm in Sources */,
 				1FE3C3762084DBC100C09FF1 /* SettingTableView.mm in Sources */,
 				1FA24017206797E0004EA814 /* SettingView.m in Sources */,
@@ -429,6 +449,7 @@
 				1FA24097206E774C004EA814 /* matrix.c in Sources */,
 				1FA240A4206E862B004EA814 /* GaussianBlurHandler.cpp in Sources */,
 				1FA24091206E774C004EA814 /* RosyWriterCapturePipeline.mm in Sources */,
+				1F2AFE8A20A881E1008FD3BF /* CannyFilterModel.mm in Sources */,
 				1FDC87BC2063AC4300F8D5D9 /* ViewController.mm in Sources */,
 				1FE3C37A2084E4F800C09FF1 /* SettingViewController.mm in Sources */,
 				1FA24099206E774C004EA814 /* MovieRecorder.m in Sources */,
@@ -441,6 +462,7 @@
 				1FE3C3742084DBC100C09FF1 /* SliderTableViewCell.mm in Sources */,
 				1FA24092206E774C004EA814 /* RosyWriterOpenCVRenderer.mm in Sources */,
 				1FE3C3A9208A39D400C09FF1 /* SettingViewMode.m in Sources */,
+				1F98542A20ADB9D9004D587F /* CustomTableViewCell.mm in Sources */,
 				1FDC87D02063B6E300F8D5D9 /* VideoViewController.mm in Sources */,
 				1FA2400B20669900004EA814 /* CVHandler.cpp in Sources */,
 				1FA2400E2066A6D4004EA814 /* SobelHandler.cpp in Sources */,

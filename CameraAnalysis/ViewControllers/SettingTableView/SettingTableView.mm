@@ -14,9 +14,10 @@
     self.delegate = self;
     self.dataSource = self;
     self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    [self registerNib:[UINib nibWithNibName:@"SliderTableViewCell" bundle:nil] forCellReuseIdentifier:@"SliderCell"];
+    [self registerNib:[UINib nibWithNibName:@"CustomTableViewCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
 }
 
+#pragma mark- init
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     [self setupDefault];
@@ -31,60 +32,59 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame settingUIArray:(NSArray *)array {
+    self = [super initWithFrame:frame];
+    _settingUIArray = array;
+    [self setupDefault];
+    [self addKVO];
+    return self;
+}
+
+- (void)releaseCell {
+    [self removeKVO];
+}
 #pragma mark- UITableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    int size = (int)_settingArray->size();
-    return size;
+//    int size = (int)_settingArray->size();
+//    return size;
+    return _settingUIArray.count;
 }
 
 #pragma mark- UITableView Delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"SliderCell";
-    UITableViewCell *cell;
-    
-    SettingUIType type = _settingArray->at(indexPath.row).type;
-    if ( type == SettingUITypeSlider ) {
-        SliderTableViewCell *sliderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if ( !sliderCell ) {
-            sliderCell = [[SliderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier action:@selector(changeValueBySlider:)];
-
-            sliderCell.tag = indexPath.row + 100;
-            NSString *name = [NSString stringWithCString:_settingArray->at(indexPath.row).uiname encoding:[NSString defaultCStringEncoding]];
-            sliderCell.titleLabel.text = name;
-            sliderCell.valueSlider.maximumValue = _settingArray->at(indexPath.row).uivalue.sliderValue.max;
-            sliderCell.valueSlider.minimumValue = _settingArray->at(indexPath.row).uivalue.sliderValue.min;
-            sliderCell.valueSlider.value = _settingArray->at(indexPath.row).uivalue.sliderValue.value;
-        }
-        
-        return sliderCell;
+    static NSString *identifier = @"CustomCell";
+    CustomTableViewCell *custom = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if ( !custom ) {
+        custom = [[CustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    else {
-        cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if ( !cell ) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-    }
-    return cell;
+    CellModel *cellMode = _settingUIArray[indexPath.row];
+    custom.cellTitle.text = cellMode.title;
+    custom.cellValue.text = cellMode.value;
+    [custom.cellView addSubview:cellMode.control];
+//    [custom.cellView addSubview:_settingUIArray[indexPath.row]];
+    return custom;
 }
 
-- (IBAction)changeValueBySlider:(UISlider *)sender {
-    int index = (int)sender.tag - 100;
-    if ( _settingArray->at(index).uivalue.sliderValue.oddValue ) {
-        if ( (int)sender.value % 2 == 0 )
-            sender.value = (int)sender.value + 1;
+#pragma mark- Notification
+- (void)addKVO {
+    for ( CellModel *cell in _settingUIArray ) {
+        [cell addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
     }
-    else {
-        sender.value = (int)sender.value;
-    }
-    
-
-    _settingArray->at(index).uivalue.sliderValue.value = sender.value;
 }
 
+- (void)removeKVO {
+    for ( CellModel *cell in _settingUIArray ) {
+        [cell removeObserver:self forKeyPath:@"value"];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    [self reloadData];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

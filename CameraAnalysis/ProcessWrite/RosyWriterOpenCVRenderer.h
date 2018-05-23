@@ -11,6 +11,7 @@
 
 #import "BaseFilterModel.h"
 #import "SobelFilterModel.h"
+#import "CannyFilterModel.h"
 
 #include "../CVHandlers/CVHandler.hpp"
 #include "../CVHandlers/SobelHandler.hpp"
